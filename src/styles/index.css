@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Light Mode */
+  --color-primary: #96e6a1;
+  --color-secondary: #d4fc79;
+
+  --bg-hero-gradient: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+
+  --color-accent: #96e6a1;
+  --color-accent-hover: #5ea89a;
+
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4d4d4d;
+  --color-text-light: #ffffff;
+
+  --color-border: #d1e7dd;
+  --color-error: #ff4d4f;
+  --color-success: #28a745;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-image: var(--bg-hero-gradient);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  input:-webkit-autofill {
+    @apply bg-transparent text-black shadow-none;
+  }
+}
+
+.hero-bg {
+  background-image: var(--bg-hero-gradient);
+}
