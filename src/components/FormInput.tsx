@@ -28,7 +28,7 @@ function FormInput({
         name={name}
         value={value}
         onChange={onChange}
-        className={`rounded-t-md border-b-1 px-2 py-1 ${
+        className={`rounded-t-md border-b-1 px-2 py-1 focus:rounded-md focus:border-1 focus:border-black focus:ring-0 focus:outline-none ${
           error ? "rounded-md border-1 border-red-500" : "border-b-black"
         }`}
       />
