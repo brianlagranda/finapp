@@ -1,14 +1,14 @@
 import { ButtonHTMLAttributes } from "react";
 
-interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-export default function PrimaryButton({
+export default function Button({
   children,
   className = "",
   ...props
-}: PrimaryButtonProps) {
+}: ButtonProps) {
   return (
     <button
       {...props}
