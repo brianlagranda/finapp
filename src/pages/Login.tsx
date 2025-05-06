@@ -1,35 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Navigate } from "react-router";
 
-import Button from "../shared/components/Button";
-import Input from "../shared/components/Input";
-import Spinner from "../shared/components/Spinner";
+import Button from "../shared/ui/Button";
+import Input from "../shared/ui/Input";
+import Spinner from "../shared/ui/Spinner/Spinner";
+
+import { useAuth } from "../features/auth/hooks/useAuth";
 
 const Login = () => {
+  const { login, isAuthenticated } = useAuth();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<{ email?: string; password?: string }>(
     {},
   );
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
-  const navigate = useNavigate();
 
-  const fakeLogin = ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) =>
-    new Promise<{ success: boolean; error?: string }>((resolve) => {
-      setTimeout(() => {
-        if (email === "test@finapp.com" && password === "test123") {
-          resolve({ success: true });
-        } else {
-          resolve({ success: false, error: "Invalid credentials" });
-        }
-      }, 1500);
-    });
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const validateForm = () => {
     const newErrors: typeof errors = {};
@@ -65,14 +54,13 @@ const Login = () => {
     setIsLoading(true);
     setLoginError("");
 
-    const response = await fakeLogin(formData);
+    const response = await login(formData.email, formData.password);
     setIsLoading(false);
 
-    if (!response.success) {
-      setLoginError(response.error ?? "Unknown error");
+    if (!response) {
+      setLoginError("Invalid Credentials");
     } else {
-      console.log("Login successful, redirecting...");
-      navigate("/dashboard");
+      console.log("Login successful, redirecting..."); // TO-DO: Change this console.log to a toastify notification.
     }
   };
 
