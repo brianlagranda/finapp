@@ -28,8 +28,8 @@ const Login = () => {
         errors={errors}
         loginError={loginError}
         isLoading={isLoading}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
     </>
   );

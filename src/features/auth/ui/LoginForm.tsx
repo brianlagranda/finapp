@@ -3,12 +3,18 @@ import Input from "../../../shared/ui/Input";
 import Spinner from "../../../shared/ui/Spinner/Spinner";
 
 type LoginFormProps = {
-  formData: { email: string; password: string };
-  errors: { email?: string; password?: string };
+  formData: {
+    email: string;
+    password: string;
+  };
+  errors: {
+    email?: string;
+    password?: string;
+  };
   loginError: string;
   isLoading: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 const LoginForm = ({
@@ -16,12 +22,13 @@ const LoginForm = ({
   errors,
   loginError,
   isLoading,
-  onChange,
-  onSubmit,
+  handleChange,
+  handleSubmit,
 }: LoginFormProps) => (
   <form
-    onSubmit={onSubmit}
+    onSubmit={handleSubmit}
     className="mx-auto flex w-[345px] flex-col justify-evenly gap-4 rounded-lg p-4 backdrop-blur-md"
+    role="form"
   >
     <Input
       label="email"
@@ -29,7 +36,7 @@ const LoginForm = ({
       type="email"
       value={formData.email}
       error={errors.email}
-      onChange={onChange}
+      onChange={handleChange}
     />
     <Input
       label="password"
@@ -37,7 +44,7 @@ const LoginForm = ({
       type="password"
       value={formData.password}
       error={errors.password}
-      onChange={onChange}
+      onChange={handleChange}
     />
     {loginError && <p className="text-center text-red-500">{loginError}</p>}
     {!isLoading ? (
