@@ -6,11 +6,12 @@ interface TransactionState {
   transactions: Array<Transaction>;
   addTransaction: (tx: Transaction) => void;
   deleteTransaction(id: string): void;
+  getBalance: () => number;
 }
 
 const useTransactionStore = create<TransactionState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       transactions: [],
       addTransaction: (tx) =>
         set((state) => ({
@@ -25,10 +26,19 @@ const useTransactionStore = create<TransactionState>()(
             (transaction) => transaction.id !== id,
           ),
         })),
+      getBalance: () => {
+        return get().transactions.reduce(
+          (acc, curr) =>
+            acc + (curr.type === "income" ? curr.amount : -curr.amount),
+          0,
+        );
+      },
     }),
     {
       name: "transactions-storage",
-      partialize: (state) => ({ transactions: state.transactions }),
+      partialize: (state): Partial<TransactionState> => ({
+        transactions: state.transactions ?? [],
+      }),
     },
   ),
 );
