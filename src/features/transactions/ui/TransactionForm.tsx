@@ -35,7 +35,7 @@ const TransactionSchema = Yup.object({
     .oneOf(validCategories)
     .required("Category is required"),
   date: Yup.string().required("Date is required"),
-  note: Yup.string(),
+  description: Yup.string(),
 });
 
 const TransactionForm = () => {
@@ -48,7 +48,7 @@ const TransactionForm = () => {
         amount: 0,
         date: new Date().toISOString().split("T")[0],
         category: "food",
-        note: "",
+        description: "",
       }}
       validationSchema={TransactionSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -58,7 +58,7 @@ const TransactionForm = () => {
             id: crypto.randomUUID(),
             type: values.type as TransactionType,
             title: values.title.trim(),
-            note: values.note.trim(),
+            description: values.description.trim(),
           };
 
           addTransaction(newTransaction);
@@ -110,7 +110,7 @@ const TransactionForm = () => {
             ]}
           />
           <FormField name="date" label="Date" type="date" />
-          <FormField name="note" label="Note" />
+          <FormField name="description" label="Description" />
 
           <Button type="submit" disabled={isSubmitting}>
             Save
