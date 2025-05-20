@@ -63,10 +63,6 @@ const TransactionForm = () => {
 
           addTransaction(newTransaction);
 
-          // Verificar si se guardó en el estado de Zustand
-          const transactions = useTransactionStore.getState().transactions;
-          console.log("🧾 Current transactions:", transactions);
-
           setSubmitting(false);
           resetForm();
         }, 400);
