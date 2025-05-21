@@ -13,6 +13,7 @@ const useTransactionStore = create<TransactionState>()(
   persist(
     (set, get) => ({
       transactions: [],
+
       addTransaction: (transaction) =>
         set((state) => ({
           transactions: [
@@ -20,12 +21,14 @@ const useTransactionStore = create<TransactionState>()(
             { ...transaction, id: transaction.id ?? crypto.randomUUID() },
           ],
         })),
+
       deleteTransaction: (id) =>
         set((state) => ({
           transactions: state.transactions.filter(
             (transaction) => transaction.id !== id,
           ),
         })),
+
       getBalance: () => {
         return get().transactions.reduce(
           (total, transaction) =>
