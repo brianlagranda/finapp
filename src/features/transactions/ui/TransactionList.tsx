@@ -5,7 +5,7 @@ const TransactionList = () => {
   const transactions = useTransactionStore((state) => state.transactions);
 
   return (
-    <table className="text-md w-full text-left">
+    <table className="w-full text-left text-sm">
       <thead>
         <tr className="border-b">
           <th className="px-4 py-2">Cat.</th>
