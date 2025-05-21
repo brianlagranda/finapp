@@ -1,7 +1,7 @@
 import useTransactionStore from "../model/useTransactionStore";
 import { TransactionItem } from "./TransactionItem";
 
-const TransactionsList = () => {
+const TransactionList = () => {
   const transactions = useTransactionStore((state) => state.transactions);
 
   return (
@@ -24,4 +24,4 @@ const TransactionsList = () => {
   );
 };
 
-export default TransactionsList;
+export default TransactionList;
