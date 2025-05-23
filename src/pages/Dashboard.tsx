@@ -1,4 +1,6 @@
 import authStore from "../features/auth/model/authStore";
+import { Balance } from "../features/dashboard/ui/Balance";
+import TransactionList from "../features/transactions/ui/TransactionList";
 
 import Button from "../shared/ui/Button";
 
@@ -8,7 +10,14 @@ function Dashboard() {
   return (
     <>
       <div>Dashboard</div>
-      <Button onClick={logout}>Log Out</Button>
+      <Balance />
+      <section>
+        <h2 className="mb-4 text-xl font-semibold">Recent Transactions</h2>
+        {<TransactionList />}
+      </section>
+      <Button className="text-sm" onClick={logout}>
+        Log Out
+      </Button>
     </>
   );
 }
