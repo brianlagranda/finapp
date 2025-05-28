@@ -1,54 +1,73 @@
-# React + TypeScript + Vite
+# FinApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FinApp is a personal finance management web app built with **React**, **TypeScript**, and **TailwindCSS**, following **Clean Code** principles and using the **Feature-Sliced Design (FSD)** architecture.
 
-Currently, two official plugins are available:
+This project focuses on creating a scalable, maintainable, and modern frontend application, with state management using **Zustand** and automated unit testing using **Vitest**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 💸 Dashboard showing income and expenses overview
+- ➕ Add, edit, delete financial records
+- 🏷️ Category-based tracking of transactions
+- 📱 Fully responsive design
+- ⚡ Optimized for performance and accessibility (A11y)
+- 🧪 Automated unit tests with Vitest
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠 Tech Stack
+
+- **React** (Vite)
+- **TypeScript**
+- **TailwindCSS**
+- **Zustand** (state management)
+- **Vitest** (unit testing)
+
+---
+
+## 🏛 Architecture
+
+- **Feature-Sliced Design (FSD)**
+- Clean Code principles:
+  - SOLID
+  - DRY (Don't Repeat Yourself)
+  - KISS (Keep It Simple, Stupid)
+- Component-level and store-level unit testing
+
+---
+
+## 🔧 Setup & Run
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/brianlagranda/finapp.git
+cd finapp
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Testing
+```bash
+npm run test
 ```
+
+---
+
+## 🤝 Contributing
+
+This is a solo personal project for learning and portfolio purposes, but feedback and suggestions are always welcome!
+
+---
+
+## 📫 Contact
+
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/dev-brianlagranda) or send me an email at briandvlpr@gmail.com.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
