@@ -1,9 +1,18 @@
 import { sortTransactionsByDateDesc } from "../lib/sortTransactions";
 import useTransactionStore from "../model/useTransactionStore";
 import { TransactionItem } from "./TransactionItem";
+import toast from "react-hot-toast";
 
 const TransactionList = () => {
   const transactions = useTransactionStore((state) => state.transactions);
+  const deleteTransaction = useTransactionStore(
+    (state) => state.deleteTransaction,
+  );
+
+  const handleDelete = (id: string) => {
+    deleteTransaction(id);
+    toast.success("Transaction succesfully deleted");
+  };
 
   const transactionsOrderedByDate = sortTransactionsByDateDesc(transactions);
 
@@ -29,7 +38,11 @@ const TransactionList = () => {
       </thead>
       <tbody>
         {transactionsOrderedByDate.map((transaction) => (
-          <TransactionItem key={transaction.id} transaction={transaction} />
+          <TransactionItem
+            key={transaction.id}
+            transaction={transaction}
+            onDelete={handleDelete}
+          />
         ))}
       </tbody>
     </table>
