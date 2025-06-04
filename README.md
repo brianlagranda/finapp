@@ -2,7 +2,7 @@
 
 FinApp is a personal finance management web app built with **React**, **TypeScript**, and **TailwindCSS**, following **Clean Code** principles and using the **Feature-Sliced Design (FSD)** architecture.
 
-This project focuses on creating a scalable, maintainable, and modern frontend application, with state management using **Zustand** and automated unit testing using **Vitest**.
+This project focuses on creating a scalable, maintainable, and modern frontend application, with state management using **Zustand** and automated unit testing using **Vitest + React Testing Library**.
 
 ---
 
@@ -23,7 +23,7 @@ This project focuses on creating a scalable, maintainable, and modern frontend a
 - **TypeScript**
 - **TailwindCSS**
 - **Zustand** (state management)
-- **Vitest** (unit testing)
+- **Vitest + React Testing Library** (unit testing)
 
 ---
 
@@ -50,6 +50,7 @@ npm run dev
 ```
 
 ## Testing
+
 ```bash
 npm run test
 ```
