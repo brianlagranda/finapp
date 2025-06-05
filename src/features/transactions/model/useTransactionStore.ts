@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Transaction } from "./types";
 import { persist } from "zustand/middleware";
+import { normalizedAmount } from "../lib/normalizedAmount";
 
 interface TransactionState {
   transactions: Array<Transaction>;
@@ -18,7 +19,11 @@ const useTransactionStore = create<TransactionState>()(
         set((state) => ({
           transactions: [
             ...state.transactions,
-            { ...transaction, id: transaction.id ?? crypto.randomUUID() },
+            {
+              ...transaction,
+              id: transaction.id ?? crypto.randomUUID(),
+              amount: normalizedAmount(transaction),
+            },
           ],
         })),
 
@@ -31,11 +36,7 @@ const useTransactionStore = create<TransactionState>()(
 
       getBalance: () => {
         return get().transactions.reduce(
-          (total, transaction) =>
-            total +
-            (transaction.type === "income"
-              ? transaction.amount
-              : -transaction.amount),
+          (total, transaction) => total + transaction.amount,
           0,
         );
       },
