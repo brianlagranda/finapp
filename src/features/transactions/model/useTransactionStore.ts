@@ -36,11 +36,7 @@ const useTransactionStore = create<TransactionState>()(
 
       getBalance: () => {
         return get().transactions.reduce(
-          (total, transaction) =>
-            total +
-            (transaction.type === "income"
-              ? transaction.amount
-              : -transaction.amount),
+          (total, transaction) => total + transaction.amount,
           0,
         );
       },
