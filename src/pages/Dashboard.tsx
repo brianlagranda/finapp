@@ -6,6 +6,7 @@ import TransactionList from "../features/transactions/ui/TransactionList";
 import Button from "../shared/ui/Button";
 import TransactionForm from "../features/transactions/ui/TransactionForm";
 import Modal from "../shared/ui/Modal";
+import { AddTransactionButton } from "../features/dashboard/ui/AddTransactionButton";
 
 function Dashboard() {
   const logout = authStore((state) => state.logout);
@@ -32,12 +33,7 @@ function Dashboard() {
         <TransactionForm />
       </Modal>
       {!renderTransactionForm && (
-        <Button
-          className="my-4 flex text-sm"
-          onClick={() => setRenderTransactionForm(true)}
-        >
-          + Add Transaction
-        </Button>
+        <AddTransactionButton onClick={() => setRenderTransactionForm(true)} />
       )}
     </>
   );
