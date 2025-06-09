@@ -10,15 +10,44 @@
   --bg-hero-gradient: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 
   --color-accent: #96e6a1;
-  --color-accent-hover: #5ea89a;
+  --color-accent-hover: #4a7a76;
 
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #4d4d4d;
-  --color-text-light: #ffffff;
+  --color-text-light: #f9f9f9;
 
-  --color-border: #d1e7dd;
-  --color-error: #ff4d4f;
+  --color-border-default: #97a59e;
+  --color-border-hover: #7a8a85;
+  --color-border-active: #6b7b78;
+
+  --color-btn-primary: #f9f9f9;
+  --color-btn-primary-hover: #000000;
+  --color-btn-primary-active: #195c23;
+  --color-btn-primary-text: #62ad6c;
+  --color-btn-primary-disabled: #94d3a2;
+  --color-btn-primary-focus: #1e7e34;
+
+  --color-btn-secondary: #f0f0f0;
+  --color-btn-secondary-hover: #e0e0e0;
+  --color-btn-secondary-active: #d4d4d4;
+  --color-btn-secondary-text: #1a1a1a;
+  --color-btn-secondary-border: #cccccc;
+
+  --color-btn-danger: #dc3545;
+  --color-btn-danger-hover: #c82333;
+  --color-btn-danger-active: #bd2130;
+  --color-btn-danger-text: #ffffff;
+
+  --color-btn-success: #28a745;
+  --color-btn-success-hover: #218838;
+  --color-btn-success-active: #1e7e34;
+  --color-btn-success-text: #ffffff;
+
+  --color-balance-positive: #19672b;
+  --color-balance-negative: #a92d2d;
+
   --color-success: #28a745;
+  --color-error: #ff4d4f;
 
   --font-sans: "Inter", system-ui, sans-serif;
 }
@@ -36,6 +65,36 @@
     background-size: cover;
     background-position: center;
     color: var(--color-text-primary);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover hover:text-btn-primary rounded-md px-4 py-2 font-semibold transition-all duration-300 ease-in-out;
+  }
+
+  .btn-secondary {
+    @apply bg-btn-secondary text-btn-secondary-text hover:bg-btn-secondary-hover active:bg-btn-secondary-active border-btn-secondary-border rounded-md border px-4 py-2;
+  }
+
+  .btn-success {
+    @apply bg-btn-success text-btn-success-text hover:bg-btn-success-hover active:bg-btn-success-active rounded-md px-4 py-2 font-semibold transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-btn-danger text-btn-danger-text hover:bg-btn-danger-hover active:bg-btn-danger-active rounded-md px-4 py-2 font-semibold transition-colors;
+  }
+
+  .btn-outline {
+    @apply border-btn-secondary-border text-btn-secondary-text hover:bg-btn-secondary-hover active:bg-btn-secondary-active rounded-md border px-4 py-2 transition-colors;
+  }
+
+  .btn-disabled {
+    @apply bg-btn-primary-disabled text-btn-primary-text cursor-not-allowed rounded-md px-4 py-2 font-semibold opacity-50 transition-colors;
+  }
+
+  .btn-icon {
+    @apply text-btn-primary-text border-btn-primary-text bg-btn-primary rounded-full border shadow-[4px_4px_12px] shadow-[#00000080] transition-all duration-150 ease-in-out hover:scale-105 active:shadow-inner;
   }
 }
 
