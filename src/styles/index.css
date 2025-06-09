@@ -21,9 +21,9 @@
   --color-border-active: #6b7b78;
 
   --color-btn-primary: #f9f9f9;
-  --color-btn-primary-hover: #1f6e2b;
+  --color-btn-primary-hover: #000000;
   --color-btn-primary-active: #195c23;
-  --color-btn-primary-text: #96e6a1;
+  --color-btn-primary-text: #62ad6c;
   --color-btn-primary-disabled: #94d3a2;
   --color-btn-primary-focus: #1e7e34;
 
@@ -70,7 +70,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover active:bg-btn-primary-active rounded-md px-4 py-2 font-semibold transition-colors;
+    @apply bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover hover:text-btn-primary rounded-md px-4 py-2 font-semibold transition-all duration-300 ease-in-out;
   }
 
   .btn-secondary {
