@@ -1,25 +1,21 @@
 import { useState } from "react";
-import authStore from "../features/auth/model/authStore";
 import { Balance } from "../features/dashboard/ui/Balance";
 import TransactionList from "../features/transactions/ui/TransactionList";
 
-import Button from "../shared/ui/Button";
 import TransactionForm from "../features/transactions/ui/TransactionForm";
 import Modal from "../shared/ui/Modal";
 import { AddTransactionButton } from "../features/dashboard/ui/AddTransactionButton";
+import { LogoutButton } from "../features/auth/ui/LogoutButton";
 
 function Dashboard() {
-  const logout = authStore((state) => state.logout);
   const [renderTransactionForm, setRenderTransactionForm] =
     useState<boolean>(false);
 
   return (
     <>
-      <div className="flex w-full items-center">
-        <h2 className="text-xl">Dashboard</h2>
-        <Button className="text-sm" onClick={logout}>
-          Log Out
-        </Button>
+      <div className="flex justify-end p-2">
+        <h1 className="sr-only">Dashboard</h1>
+        <LogoutButton />
       </div>
       <Balance />
       <section>
