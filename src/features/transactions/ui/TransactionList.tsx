@@ -46,7 +46,7 @@ const TransactionList = () => {
             <th className="px-4 py-2">Date</th>
             <th className="px-4 py-2">Description</th>
             <th className="px-4 py-2">Amount</th>
-            <th className="px-4 py-2" aria-hidden="true"></th>
+            <th className="px-4 py-2"></th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@ const TransactionList = () => {
         <div>
           <p className="text-lg font-semibold">
             Are you sure you want to delete{" "}
-            {`"${transactionToDelete?.title} - ${transactionToDelete?.description ? transactionToDelete.description : ""}"`}{" "}
+            {`"${transactionToDelete?.title} - ${transactionToDelete?.description ?? ""}"`}{" "}
             transaction?
           </p>
           <div className="mt-4 flex justify-end gap-2">
