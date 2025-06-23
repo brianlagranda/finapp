@@ -1,5 +1,7 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { format } from "date-fns";
+
 import Button from "../../../shared/ui/Button";
 import FormField from "../../../shared/ui/FormField";
 import useTransactionStore from "../model/useTransactionStore";
@@ -45,7 +47,7 @@ const TransactionForm = () => {
       initialValues={{
         title: "",
         type: "income",
-        amount: 0,
+        amount: null,
         date: new Date().toISOString().split("T")[0],
         category: "food",
         description: "",
@@ -53,12 +55,16 @@ const TransactionForm = () => {
       validationSchema={TransactionSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
+          const formattedDate = format(new Date(values.date), "MM-dd-yyyy");
+
           const newTransaction = {
             ...values,
             id: crypto.randomUUID(),
             type: values.type as TransactionType,
             title: values.title.trim(),
             description: values.description.trim(),
+            amount: Number(values.amount),
+            date: formattedDate,
           };
 
           addTransaction(newTransaction);
