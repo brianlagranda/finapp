@@ -7,7 +7,7 @@ export const LogoutButton = () => {
   return (
     <button
       onClick={logout}
-      className="flex cursor-pointer items-center gap-2 active:scale-95"
+      className="flex cursor-pointer items-center gap-2 hover:bg-blue-100 active:scale-95"
       aria-label="Log out"
       data-testid="logout-button"
     >
