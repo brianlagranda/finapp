@@ -1,0 +1,33 @@
+import {
+  Utensils,
+  BusFront,
+  Home,
+  PlugZap,
+  HeartPulse,
+  Clapperboard,
+  ShoppingBag,
+  GraduationCap,
+  Plane,
+  Gift,
+  Banknote,
+  Briefcase,
+  LineChart,
+  MoreHorizontal,
+} from "lucide-react";
+
+export const categories = [
+  { label: "Food", value: "food", icon: Utensils },
+  { label: "Transport", value: "transport", icon: BusFront },
+  { label: "Housing", value: "housing", icon: Home },
+  { label: "Utilities", value: "utilities", icon: PlugZap },
+  { label: "Health", value: "health", icon: HeartPulse },
+  { label: "Entertainment", value: "entertainment", icon: Clapperboard },
+  { label: "Shopping", value: "shopping", icon: ShoppingBag },
+  { label: "Education", value: "education", icon: GraduationCap },
+  { label: "Travel", value: "travel", icon: Plane },
+  { label: "Gift", value: "gift", icon: Gift },
+  { label: "Salary", value: "salary", icon: Banknote },
+  { label: "Freelance", value: "freelance", icon: Briefcase },
+  { label: "Investment", value: "investment", icon: LineChart },
+  { label: "Other", value: "other", icon: MoreHorizontal },
+];
