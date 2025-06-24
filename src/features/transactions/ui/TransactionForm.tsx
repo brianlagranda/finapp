@@ -4,23 +4,9 @@ import Button from "../../../shared/ui/Button";
 import FormField from "../../../shared/ui/FormField";
 import useTransactionStore from "../model/useTransactionStore";
 import { TransactionType } from "../model/types";
+import { categories } from "../../../shared/constants/categories";
 
-const validCategories = [
-  "food",
-  "transport",
-  "housing",
-  "utilities",
-  "health",
-  "entertainment",
-  "shopping",
-  "education",
-  "travel",
-  "gift",
-  "salary",
-  "freelance",
-  "investment",
-  "other",
-];
+const validCategoryValues = categories.map((category) => category.value);
 
 const TransactionSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -32,7 +18,7 @@ const TransactionSchema = Yup.object({
     .positive("Amount must be positive")
     .required("Amount is required"),
   category: Yup.string()
-    .oneOf(validCategories)
+    .oneOf(validCategoryValues)
     .required("Category is required"),
   date: Yup.string().required("Date is required"),
   description: Yup.string(),
@@ -88,22 +74,7 @@ const TransactionForm = () => {
             name="category"
             label="category"
             as="select"
-            options={[
-              { label: "Food", value: "food" },
-              { label: "Transport", value: "transport" },
-              { label: "Housing", value: "housing" },
-              { label: "Utilities", value: "utilities" },
-              { label: "Health", value: "health" },
-              { label: "Entertainment", value: "entertainment" },
-              { label: "Shopping", value: "shopping" },
-              { label: "Education", value: "education" },
-              { label: "Travel", value: "travel" },
-              { label: "Gift", value: "gift" },
-              { label: "Salary", value: "salary" },
-              { label: "Freelance", value: "freelance" },
-              { label: "Investment", value: "investment" },
-              { label: "Other", value: "other" },
-            ]}
+            options={categories}
           />
           <FormField name="date" label="Date" type="date" />
           <FormField name="description" label="Description" />
