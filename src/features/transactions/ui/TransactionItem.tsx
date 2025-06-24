@@ -1,5 +1,6 @@
-import { Trash2 } from "lucide-react";
+import { Trash2, MoreHorizontal } from "lucide-react";
 import { formatCurrency } from "../../dashboard/lib/formatCurrency";
+import { categories } from "../../../shared/constants/categories";
 import { Transaction } from "../model/types";
 
 interface Props {
@@ -8,11 +9,27 @@ interface Props {
 }
 
 export const TransactionItem = ({ transaction, onDelete }: Props) => {
+  const categoryData = categories.find(
+    (category) => category.value === transaction.category,
+  );
+  const Icon = categoryData?.icon ?? MoreHorizontal;
+
   return (
     <tr>
       <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">
-        {transaction.category.slice(0, 4)}
+        <div className="flex items-center sm:hidden">
+          <span
+            className="text-accent inline-block"
+            aria-label={categoryData?.label ?? transaction.category}
+            title={categoryData?.label ?? transaction.category}
+          >
+            <Icon className="h-4 w-4" aria-hidden="true" />
+          </span>
+        </div>
+
+        <span className="hidden sm:inline">{transaction.category}</span>
       </td>
+
       <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">{transaction.date}</td>
       <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">{transaction.title}</td>
       <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">

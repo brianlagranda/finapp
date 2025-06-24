@@ -3,51 +3,58 @@
 @import "tailwindcss";
 
 @theme {
-  /* Light Mode */
-  --color-primary: #96e6a1;
-  --color-secondary: #d4fc79;
+  --color-apple-50: #f1fbea;
+  --color-apple-100: #dff5d2;
+  --color-apple-200: #c1ecaa;
+  --color-apple-300: #9ade78;
+  --color-apple-400: #76cd4e;
+  --color-apple-500: #4ea028;
+  --color-apple-600: #408e22;
+  --color-apple-700: #336d16;
+  --color-apple-800: #2c571d;
+  --color-apple-900: #274a1d;
+  --color-apple-950: #112b0b;
 
-  --bg-hero-gradient: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
 
-  --color-accent: #96e6a1;
-  --color-accent-hover: #4a7a76;
+  --color-title: var(--color-apple-400);
 
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #4d4d4d;
-  --color-text-light: #f9f9f9;
+  --color-primary: #1a1a1a;
+  --color-secondary: #4d4d4d;
+  --color-light: #f9f9f9;
+  --color-inverted: #ffffff;
+  --color-accent: var(--color-apple-600);
 
-  --color-border-default: #97a59e;
-  --color-border-hover: #7a8a85;
-  --color-border-active: #6b7b78;
+  --color-border-default: #cfd8dc;
+  --color-border-muted: #e0e0e0;
+  --color-border-accent: var(--color-apple-300);
 
-  --color-btn-primary: #f9f9f9;
-  --color-btn-primary-hover: #000000;
-  --color-btn-primary-active: #195c23;
-  --color-btn-primary-text: #62ad6c;
-  --color-btn-primary-disabled: #94d3a2;
-  --color-btn-primary-focus: #1e7e34;
+  --color-btn-primary-bg: var(--color-apple-500);
+  --color-btn-primary: var(--color-inverted);
+  --color-btn-primary-hover: var(--color-apple-600);
+  --color-btn-primary-active: var(--color-apple-700);
+  --color-btn-primary-disabled: var(--color-apple-200);
 
-  --color-btn-secondary: #f0f0f0;
+  --color-btn-secondary-bg: #0c0b0b;
+  --color-btn-secondary: #1a1a1a;
   --color-btn-secondary-hover: #e0e0e0;
   --color-btn-secondary-active: #d4d4d4;
-  --color-btn-secondary-text: #1a1a1a;
-  --color-btn-secondary-border: #cccccc;
+  --color-border-btn-secondary: #cccccc;
 
-  --color-btn-danger: #dc3545;
-  --color-btn-danger-hover: #c82333;
-  --color-btn-danger-active: #bd2130;
-  --color-btn-danger-text: #ffffff;
+  --color-state-success: #28a745;
+  --color-state-error: #ff4d4f;
+  --color-state-warning: #ffc107;
+  --color-state-info: #17a2b8;
 
-  --color-btn-success: #28a745;
-  --color-btn-success-hover: #218838;
-  --color-btn-success-active: #1e7e34;
-  --color-btn-success-text: #ffffff;
-
-  --color-balance-positive: #19672b;
+  --color-balance-positive: var(--color-apple-600);
   --color-balance-negative: #a92d2d;
 
-  --color-success: #28a745;
-  --color-error: #ff4d4f;
+  --color-surface-header: var(--color-bg-surface);
+  --color-surface-card: var(--color-bg-surface);
+  --color-surface-modal: var(--color-bg-surface);
+  --color-surface-hover: var(--color-apple-100);
+  --color-surface-accent: var(--color-apple-300);
 
   --font-sans: "Inter", system-ui, sans-serif;
 }
@@ -60,50 +67,50 @@
 
   body {
     font-family: var(--font-sans);
-    background-image: var(--bg-hero-gradient);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: var(--color-text-primary);
+    background-color: var(--color-background);
+    color: var(--color-primary);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover hover:text-btn-primary rounded-md px-4 py-2 font-semibold transition-all duration-300 ease-in-out;
+    @apply bg-btn-primary-bg text-btn-primary hover:bg-btn-primary-hover active:bg-btn-primary-active rounded-md px-4 py-2 font-semibold transition-all duration-100 ease-in-out;
   }
 
   .btn-secondary {
-    @apply bg-btn-secondary text-btn-secondary-text hover:bg-btn-secondary-hover active:bg-btn-secondary-active border-btn-secondary-border rounded-md border px-4 py-2;
+    @apply bg-btn-secondary-bg text-btn-secondary hover:bg-btn-secondary-hover active:bg-btn-secondary-active border-btn-secondary rounded-md border px-4 py-2;
   }
 
   .btn-success {
-    @apply bg-btn-success text-btn-success-text hover:bg-btn-success-hover active:bg-btn-success-active rounded-md px-4 py-2 font-semibold transition-colors;
+    @apply bg-state-success rounded-md px-4 py-2 font-semibold text-white transition-colors hover:bg-green-700 active:bg-green-800;
   }
 
   .btn-danger {
-    @apply bg-btn-danger text-btn-danger-text hover:bg-btn-danger-hover active:bg-btn-danger-active rounded-md px-4 py-2 font-semibold transition-colors;
+    @apply bg-state-error rounded-md px-4 py-2 font-semibold text-white transition-colors hover:bg-red-600 active:bg-red-700;
   }
 
   .btn-outline {
-    @apply border-btn-secondary-border text-btn-secondary-text hover:bg-btn-secondary-hover active:bg-btn-secondary-active rounded-md border px-4 py-2 transition-colors;
+    @apply border-btn-secondary text-btn-secondary hover:bg-btn-secondary-hover active:bg-btn-secondary-active rounded-md border px-4 py-2 transition-colors;
   }
 
   .btn-disabled {
-    @apply bg-btn-primary-disabled text-btn-primary-text cursor-not-allowed rounded-md px-4 py-2 font-semibold opacity-50 transition-colors;
+    @apply bg-btn-primary-disabled text-btn-primary cursor-not-allowed rounded-md px-4 py-2 font-semibold opacity-50 transition-colors;
   }
 
   .btn-icon {
-    @apply text-btn-primary-text border-btn-primary-text bg-btn-primary rounded-full border shadow-[4px_4px_12px] shadow-[#00000080] transition-all duration-150 ease-in-out hover:scale-105 active:shadow-inner;
+    @apply bg-btn-primary-bg text-btn-primary border-btn-primary rounded-full border shadow-[4px_4px_12px] shadow-[#00000080] transition-all duration-150 ease-in-out hover:scale-105 active:shadow-inner;
   }
 }
 
 @layer utilities {
   input:-webkit-autofill {
-    @apply bg-transparent text-black shadow-none;
+    @apply bg-transparent shadow-none;
   }
 }
 
 .hero-bg {
   background-image: var(--bg-hero-gradient);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
