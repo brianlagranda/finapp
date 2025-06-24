@@ -1,4 +1,4 @@
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, useField } from "formik";
 
 interface Option {
   label: string;
@@ -26,6 +26,11 @@ const FormField = ({
     }
   };
 
+  const [field] = useField(name);
+
+  const baseInputClass =
+    "rounded-md px-2 border py-1 focus:border-black focus:ring-0 focus:outline-none";
+
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={name}>{label}</label>
@@ -35,7 +40,7 @@ const FormField = ({
           name={name}
           id={name}
           onKeyDown={handleKeyDown}
-          className="rounded-md rounded-t-md rounded-b-none border-1 border-b-1 border-black px-2 py-1 focus:ring-0 focus:outline-none"
+          className={baseInputClass}
         >
           {options.map(({ label, value }) => (
             <option key={value} value={value}>
@@ -44,12 +49,14 @@ const FormField = ({
           ))}
         </Field>
       ) : (
-        <Field
+        <input
+          {...field}
           type={type}
           name={name}
           id={name}
           onKeyDown={handleKeyDown}
-          className="rounded-t-md border-b-1 px-2 py-1 focus:rounded-md focus:border-1 focus:border-black focus:ring-0 focus:outline-none"
+          value={field.value ?? ""}
+          className={baseInputClass}
         />
       )}
       <ErrorMessage

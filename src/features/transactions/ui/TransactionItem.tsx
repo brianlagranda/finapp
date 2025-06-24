@@ -1,4 +1,5 @@
-import { MoreHorizontal } from "lucide-react";
+import { Trash2, MoreHorizontal } from "lucide-react";
+import { formatCurrency } from "../../dashboard/lib/formatCurrency";
 import { categories } from "../../../shared/constants/categories";
 import { Transaction } from "../model/types";
 
@@ -15,7 +16,7 @@ export const TransactionItem = ({ transaction, onDelete }: Props) => {
 
   return (
     <tr>
-      <td className="px-4 py-2">
+      <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">
         <div className="flex items-center sm:hidden">
           <span
             className="text-accent inline-block"
@@ -28,19 +29,19 @@ export const TransactionItem = ({ transaction, onDelete }: Props) => {
 
         <span className="hidden sm:inline">{transaction.category}</span>
       </td>
-      <td className="px-4 py-2">{transaction.date}</td>
-      <td className="py-2 pl-2">{transaction.title}</td>
-      <td className="px-4 py-2">
-        {transaction.type === "income"
-          ? transaction.amount
-          : -transaction.amount}
+
+      <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">{transaction.date}</td>
+      <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">{transaction.title}</td>
+      <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">
+        {formatCurrency(transaction.amount)}
       </td>
-      <td className="py-2 pr-2">
+      <td className="px-2 py-1 text-sm sm:px-4 sm:py-2">
         <button
-          className="cursor-pointer text-2xl text-red-500 transition-colors hover:text-red-700"
+          className="flex items-center gap-1 rounded-md p-1 text-red-500 hover:bg-red-300 hover:text-red-800 active:scale-95 md:p-2"
           onClick={() => onDelete(transaction.id)}
         >
-          🗑
+          <Trash2 className="h-4 w-4 sm:h-5 sm:w-5" />
+          <span className="hidden md:inline">Eliminar</span>
         </button>
       </td>
     </tr>
