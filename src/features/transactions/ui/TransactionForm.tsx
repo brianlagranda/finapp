@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 
 import Button from "../../../shared/ui/Button";
 import FormField from "../../../shared/ui/FormField";
@@ -41,7 +41,12 @@ const TransactionForm = () => {
       validationSchema={TransactionSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
-          const formattedDate = format(new Date(values.date), "MM-dd-yyyy");
+          const parsedDate = parse(values.date, "yyyy-MM-dd", new Date());
+          const formattedDate = format(parsedDate, "MM-dd-yyyy");
+
+          console.log("formattedDate: ", formattedDate);
+          console.log("date: ", new Date().toISOString().split("T")[0]);
+          console.log("values.date: ", values.date);
 
           const newTransaction = {
             ...values,
