@@ -9,3 +9,9 @@ export type Transaction = {
   date: string;
   description?: string;
 };
+
+export type SortDirection = "asc" | "desc";
+
+export type SortKey =
+  | keyof Pick<Transaction, "category" | "date" | "title" | "amount">
+  | "none";
