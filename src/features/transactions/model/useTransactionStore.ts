@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Transaction } from "./types";
+import { Transaction, SortKey, SortDirection } from "./types";
 import { persist } from "zustand/middleware";
 import { normalizedAmount } from "../lib/normalizedAmount";
 
@@ -8,6 +8,10 @@ interface TransactionState {
   addTransaction: (transaction: Transaction) => void;
   deleteTransaction(id: string): void;
   getBalance: () => number;
+  sortKey: SortKey;
+  setSortKey: (key: SortKey) => void;
+  sortDirection: SortDirection;
+  setSortDirection: (direction: SortDirection) => void;
 }
 
 const useTransactionStore = create<TransactionState>()(
@@ -39,6 +43,18 @@ const useTransactionStore = create<TransactionState>()(
           (total, transaction) => total + transaction.amount,
           0,
         );
+      },
+
+      sortKey: "none",
+      sortDirection: "desc",
+
+      setSortKey: (key) => set({ sortKey: key }),
+
+      setSortDirection: (direction) => set({ sortDirection: direction }),
+
+      toggleSortDirection: () => {
+        const current = get().sortDirection;
+        set({ sortDirection: current === "asc" ? "desc" : "asc" });
       },
     }),
     {
