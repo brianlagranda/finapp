@@ -92,4 +92,72 @@ describe("useTransactionStore", () => {
     const balance = store.getBalance();
     expect(balance).toBe(2000);
   });
+
+  it("updates a transaction by ID", () => {
+    const store = useTransactionStore.getState();
+
+    const originalTransaction: Transaction = {
+      id: "edit-me",
+      title: "Old Title",
+      amount: 100,
+      type: "expense",
+      date: "2025-05-20",
+      category: "Food",
+    };
+
+    act(() => {
+      store.addTransaction(originalTransaction);
+
+      store.updateTransaction({
+        ...originalTransaction,
+        title: "New Title",
+        amount: 1500,
+      });
+    });
+
+    const updatedStore = useTransactionStore.getState();
+
+    expect(updatedStore.transactions).toHaveLength(1);
+    expect(updatedStore.transactions[0].id).toBe("edit-me");
+    expect(updatedStore.transactions[0].title).toBe("New Title");
+    expect(updatedStore.transactions[0].amount).toBe(-1500);
+  });
+
+  it("does nothing if trying to update a non-existent transaction", () => {
+    const store = useTransactionStore.getState();
+
+    const originalTransaction: Transaction = {
+      id: "edit-me",
+      title: "Old Title",
+      amount: 100,
+      type: "expense",
+      date: "2025-05-20",
+      category: "Food",
+    };
+
+    act(() => {
+      store.addTransaction(originalTransaction);
+
+      store.updateTransaction({
+        id: "050403",
+        title: "New Title",
+        amount: 1500,
+        type: "expense",
+        date: "2025-05-19",
+        category: "House",
+      });
+    });
+
+    const updatedStore = useTransactionStore.getState();
+
+    expect(updatedStore.transactions.length).toBe(1);
+    expect(updatedStore.transactions[0]).toMatchObject({
+      id: "edit-me",
+      title: "Old Title",
+      amount: -100,
+      type: "expense",
+      date: "2025-05-20",
+      category: "Food",
+    });
+  });
 });
