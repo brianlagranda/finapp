@@ -6,6 +6,7 @@ import { normalizedAmount } from "../lib/normalizedAmount";
 interface TransactionState {
   transactions: Array<Transaction>;
   addTransaction: (transaction: Transaction) => void;
+  updateTransaction: (updatedTransaction: Transaction) => void;
   deleteTransaction(id: string): void;
   getBalance: () => number;
   sortKey: SortKey;
@@ -29,6 +30,19 @@ const useTransactionStore = create<TransactionState>()(
               amount: normalizedAmount(transaction),
             },
           ],
+        })),
+
+      updateTransaction: (updatedTransaction) =>
+        set((state) => ({
+          transactions: state.transactions.map((transaction) =>
+            transaction.id === updatedTransaction.id
+              ? {
+                  ...transaction,
+                  ...updatedTransaction,
+                  amount: normalizedAmount(updatedTransaction),
+                }
+              : transaction,
+          ),
         })),
 
       deleteTransaction: (id) =>
