@@ -29,7 +29,7 @@ describe("<Balance />", () => {
 
     const balanceText = screen.getByText("$1,000.00");
 
-    expect(balanceText).toHaveClass("text-green-600");
+    expect(balanceText).toHaveClass("text-green-700");
   });
 
   it("should display red text balance when it's negative", () => {
@@ -52,6 +52,6 @@ describe("<Balance />", () => {
 
     const balanceText = screen.getByText("-$1,000.00");
 
-    expect(balanceText).toHaveClass("text-red-500");
+    expect(balanceText).toHaveClass("text-red-600");
   });
 });
