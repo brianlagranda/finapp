@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+import { useClickOutsideToClose } from "../hook/useClickOutsideToClose";
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,17 +18,27 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   );
 };
 
-const Backdrop: React.FC<{
+const Backdrop = ({
+  onClose,
+  children,
+}: {
   onClose: () => void;
   children: React.ReactNode;
-}> = ({ onClose, children }) => (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-    onClick={onClose}
-  >
-    {children}
-  </div>
-);
+}) => {
+  const { onMouseDown, onMouseUp } = useClickOutsideToClose(onClose);
+
+  return (
+    <div
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      tabIndex={-1}
+      aria-hidden="true"
+    >
+      {children}
+    </div>
+  );
+};
 
 const ModalContent: React.FC<{
   onClose: () => void;
@@ -36,6 +47,9 @@ const ModalContent: React.FC<{
   <div
     className="relative rounded-lg bg-white p-6"
     onClick={(e) => e.stopPropagation()}
+    role="dialog"
+    aria-modal="true"
+    tabIndex={-1}
   >
     <CloseButton onClose={onClose} />
     {children}
