@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Button from "../ui/Button";
+import Button from "../Button";
 
 describe("Button", () => {
   it("should render login button with the correct text passed through children", () => {
