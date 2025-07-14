@@ -8,7 +8,11 @@ import { Transaction } from "../model/types";
 import { useSortedTransactions } from "../hooks/useSortedTransactions";
 import { useSortControl } from "../hooks/useSortControl";
 
-const TransactionList = () => {
+const TransactionList = ({
+  onEditTransaction,
+}: {
+  onEditTransaction: (transaction: Transaction) => void;
+}) => {
   const deleteTransaction = useTransactionStore(
     (state) => state.deleteTransaction,
   );
@@ -84,6 +88,7 @@ const TransactionList = () => {
               key={transaction.id}
               transaction={transaction}
               onDelete={() => setTransactionToDelete(transaction)}
+              onEdit={() => onEditTransaction(transaction)}
             />
           ))}
         </tbody>
