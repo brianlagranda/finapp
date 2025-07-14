@@ -6,7 +6,6 @@ import FormField from "../../../shared/ui/FormField";
 import useTransactionStore from "../model/useTransactionStore";
 import { Transaction } from "../model/types";
 import { categories } from "../../../shared/constants/categories";
-import { formatTransactionDate } from "../lib/formatTransactionDate";
 
 type TransactionFormProps = {
   mode: "create" | "edit";
@@ -46,7 +45,7 @@ const TransactionForm = ({ mode, initialData }: TransactionFormProps) => {
       ? {
           title: initialData.title ?? "",
           type: initialData.type ?? "expense",
-          amount: initialData.amount ?? 0,
+          amount: initialData.amount ? Math.abs(initialData.amount) : 0,
           date: initialData.date ?? new Date().toISOString().split("T")[0],
           category: initialData.category ?? "food",
           description: initialData.description ?? "",
@@ -65,13 +64,10 @@ const TransactionForm = ({ mode, initialData }: TransactionFormProps) => {
       initialValues={initialValues}
       validationSchema={TransactionSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
-        const formattedDate = formatTransactionDate(values.date);
-
         if (isEditing && initialData) {
           updateTransaction({
             ...initialData,
             ...values,
-            date: formattedDate,
           });
         } else {
           addTransaction({
@@ -79,7 +75,6 @@ const TransactionForm = ({ mode, initialData }: TransactionFormProps) => {
             title: values.title.trim(),
             description: values.description?.trim(),
             id: crypto.randomUUID(),
-            date: formattedDate,
           });
         }
 
