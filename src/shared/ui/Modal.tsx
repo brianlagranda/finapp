@@ -59,7 +59,7 @@ const ModalContent: React.FC<{
 const CloseButton: React.FC<{ onClose: () => void }> = ({ onClose }) => (
   <button
     onClick={onClose}
-    className="absolute top-2 right-2 cursor-pointer text-xl"
+    className="hover:bg-btn-secondary-hover absolute top-2 right-2 z-99 h-10 w-10 cursor-pointer rounded-full text-xl active:scale-95"
     aria-label="Close modal"
   >
     X
