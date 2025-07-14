@@ -6,10 +6,29 @@ import TransactionForm from "../../features/transactions/ui/TransactionForm";
 import Modal from "../../shared/ui/Modal";
 import { AddTransactionButton } from "../../features/dashboard/ui/AddTransactionButton";
 import { DashboardLayout } from "./layout/DashboardLayout";
+import { Transaction } from "../../features/transactions/model/types";
 
 function Dashboard() {
   const [renderTransactionForm, setRenderTransactionForm] =
     useState<boolean>(false);
+  const [transactionMode, setTransactionMode] = useState<"create" | "edit">(
+    "create",
+  );
+  const [transactionToEdit, setTransactionToEdit] = useState<
+    Transaction | undefined
+  >(undefined);
+
+  const handleAddTransaction = () => {
+    setTransactionToEdit(undefined);
+    setRenderTransactionForm(true);
+    setTransactionMode("create");
+  };
+
+  const handleEditTransaction = (transaction: Transaction) => {
+    setTransactionToEdit(transaction);
+    setRenderTransactionForm(true);
+    setTransactionMode("edit");
+  };
 
   return (
     <DashboardLayout>
@@ -17,16 +36,19 @@ function Dashboard() {
       <Balance />
       <section>
         <h2 className="mb-4 text-xl font-semibold">Recent Transactions</h2>
-        {<TransactionList />}
+        {<TransactionList onEditTransaction={handleEditTransaction} />}
       </section>
       <Modal
         isOpen={renderTransactionForm}
         onClose={() => setRenderTransactionForm(false)}
       >
-        <TransactionForm />
+        <TransactionForm
+          mode={transactionMode}
+          initialData={transactionToEdit}
+        />
       </Modal>
       {!renderTransactionForm && (
-        <AddTransactionButton onClick={() => setRenderTransactionForm(true)} />
+        <AddTransactionButton onClick={() => handleAddTransaction()} />
       )}
     </DashboardLayout>
   );
