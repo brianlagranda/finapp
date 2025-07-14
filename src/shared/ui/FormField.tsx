@@ -40,7 +40,7 @@ const FormField = ({
           name={name}
           id={name}
           onKeyDown={handleKeyDown}
-          className={baseInputClass}
+          className={`${baseInputClass} cursor-pointer`}
         >
           {options.map(({ label, value }) => (
             <option key={value} value={value}>
