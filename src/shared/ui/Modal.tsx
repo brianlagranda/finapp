@@ -33,7 +33,6 @@ const Backdrop = ({
       onMouseUp={onMouseUp}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
       tabIndex={-1}
-      aria-hidden="true"
     >
       {children}
     </div>
