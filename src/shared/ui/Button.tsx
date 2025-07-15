@@ -8,7 +8,7 @@ export default function Button({
   children,
   className = "",
   ...props
-}: ButtonProps) {
+}: Readonly<ButtonProps>) {
   return (
     <button
       {...props}
